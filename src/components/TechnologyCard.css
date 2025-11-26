@@ -1,0 +1,104 @@
+.technology-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #ccc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.technology-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для разных статусов */
+.technology-card.not-started {
+    border-left-color: #ff6b6b;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+}
+
+.technology-card.in-progress {
+    border-left-color: #4ecdc4;
+    background: linear-gradient(135deg, #fff8f0 0%, #fff3e0 100%);
+}
+
+.technology-card.completed {
+    border-left-color: #45b7d1;
+    background: linear-gradient(135deg, #f8fff8 0%, #e8f5e9 100%);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    margin: 0;
+    color: #333;
+    font-size: 1.3em;
+    font-weight: 600;
+    flex: 1;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 500;
+    margin-left: 15px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.status-badge.not-started {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.status-badge.in-progress {
+    background-color: #4ecdc4;
+    color: white;
+}
+
+.status-badge.completed {
+    background-color: #45b7d1;
+    color: white;
+}
+
+.card-description {
+    color: #666;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+}
+
+.progress-indicator {
+    height: 6px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.progress-bar.not-started {
+    background-color: #ff6b6b;
+    width: 0%;
+}
+
+.progress-bar.in-progress {
+    background-color: #4ecdc4;
+    width: 50%;
+}
+
+.progress-bar.completed {
+    background-color: #45b7d1;
+    width: 100%;
+}

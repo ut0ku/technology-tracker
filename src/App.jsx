@@ -77,7 +77,17 @@ function App() {
         const notStartedTechs = technologies.filter(tech => tech.status === 'not-started');
         if (notStartedTechs.length > 0) {
             const randomTech = notStartedTechs[Math.floor(Math.random() * notStartedTechs.length)];
-            alert(`🎯 Следующая технология для изучения: ${randomTech.title}`);
+            
+            // Обновляем статус выбранной технологии на "в процессе"
+            setTechnologies(prevTechnologies =>
+                prevTechnologies.map(tech =>
+                    tech.id === randomTech.id
+                        ? { ...tech, status: 'in-progress' }
+                        : tech
+                )
+            );
+            
+            alert(`🎯 Следующая технология для изучения: ${randomTech.title}\nСтатус изменен на "В процессе"`);
         } else {
             alert('🎉 Все технологии уже начаты или завершены!');
         }

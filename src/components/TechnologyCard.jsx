@@ -1,4 +1,5 @@
 import './TechnologyCard.css';
+
 function TechnologyCard({ id, title, description, status, onStatusChange }) {
     const handleClick = () => {
         onStatusChange(id);

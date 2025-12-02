@@ -15,7 +15,6 @@ function App() {
     const [username, setUsername] = useState('');
 
     useEffect(() => {
-        // Проверяем авторизацию при загрузке
         const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const user = localStorage.getItem('username') || '';
         setIsLoggedIn(loggedIn);
@@ -28,7 +27,6 @@ function App() {
     };
 
     const handleLogout = () => {
-        // При выходе очищаем все данные
         localStorage.clear();
         setIsLoggedIn(false);
         setUsername('');
@@ -45,11 +43,9 @@ function App() {
                 
                 <div className="main-content">
                     <Routes>
-                        {/* Публичные маршруты */}
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login onLogin={handleLogin} />} />
                         
-                        {/* Защищенные маршруты - только для авторизованных пользователей */}
                         <Route path="/technologies" element={
                             <ProtectedRoute isLoggedIn={isLoggedIn}>
                                 <TechnologyList />

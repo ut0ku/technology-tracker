@@ -1,0 +1,71 @@
+.technology-detail-page {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.technology-detail {
+    margin-top: 20px;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.detail-section p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.status-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.status-buttons button {
+    padding: 10px 20px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+}
+
+.status-buttons button:hover {
+    border-color: #667eea;
+    background-color: #f0f4ff;
+}
+
+.status-buttons button.active {
+    border-color: #667eea;
+    background-color: #667eea;
+    color: white;
+}
+
+.current-status {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 10px;
+}

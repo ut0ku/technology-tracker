@@ -1,13 +1,10 @@
 import './Modal.css';
 
-// Простой переиспользуемый компонент модального окна
 function Modal({ isOpen, onClose, title, children }) {
-    // Если модалка закрыта - не показываем ничего
     if (!isOpen) {
         return null;
     }
 
-    // Функция для закрытия модалки при клике на фон
     const handleBackgroundClick = (event) => {
         if (event.target === event.currentTarget) {
             onClose();

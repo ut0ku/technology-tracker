@@ -1,0 +1,318 @@
+.main-navigation {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.nav-brand h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5em;
+    white-space: nowrap;
+}
+
+.nav-brand a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    min-width: 90px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-link:hover {
+    background-color: #f0f4ff;
+    color: #667eea;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: #667eea;
+    color: white;
+}
+
+/* Стили для выпадающего списка пользователей */
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: #666;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-toggle:hover {
+    background-color: #f0f4ff;
+    color: #667eea;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    min-width: 250px;
+    z-index: 1000;
+    margin-top: 5px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.dropdown-item {
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    flex-wrap: wrap;
+}
+
+.user-role {
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 150px;
+}
+
+.user-progress {
+    background: #667eea;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.8em;
+    flex-shrink: 0;
+}
+
+/* Стили для информации о пользователе */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.username {
+    color: #495057;
+    font-weight: 500;
+    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+.logout-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.logout-btn:hover {
+    background: #ff5252;
+    transform: translateY(-1px);
+}
+
+.login-link {
+    background: #667eea;
+    color: white !important;
+}
+
+.login-link:hover {
+    background: #5a6fd8 !important;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 10px;
+    }
+    
+    .nav-link, .dropdown-toggle {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        min-width: 80px;
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-navigation {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        align-items: stretch;
+    }
+    
+    .nav-brand h2 {
+        text-align: center;
+        font-size: 1.3em;
+    }
+    
+    .nav-menu {
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-menu li {
+        flex: 1;
+        min-width: calc(50% - 8px);
+        justify-content: center;
+    }
+    
+    .nav-link, .dropdown-toggle {
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+        padding: 10px 15px;
+        margin: 2px 0;
+    }
+    
+    .dropdown-container {
+        width: 100%;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+    .user-info {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+        order: 100; /* Перемещаем в конец на мобильных */
+    }
+    
+    .username {
+        max-width: none;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-brand h2 {
+        font-size: 1.2em;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .nav-link, .dropdown-toggle {
+        width: 100%;
+        text-align: center;
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .username {
+        max-width: 100%;
+    }
+    
+    .logout-btn {
+        width: 100%;
+    }
+}

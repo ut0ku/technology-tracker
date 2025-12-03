@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
+import { useTechnologies } from '../contexts/TechnologyContext';
 import './Settings.css';
 
 function Settings() {
-    const [technologies, setTechnologies] = useState([]);
+    const { technologies, resetAllData } = useTechnologies();
     const [settings, setSettings] = useState({
         exportFormat: 'json'
     });
@@ -14,11 +15,6 @@ function Settings() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const saved = localStorage.getItem('technologies');
-        if (saved) {
-            setTechnologies(JSON.parse(saved));
-        }
-        
         const savedSettings = localStorage.getItem('appSettings');
         if (savedSettings) {
             setSettings(JSON.parse(savedSettings));
@@ -75,10 +71,13 @@ function Settings() {
         // Удаляем ВСЕ данные приложения
         localStorage.removeItem('technologies');
         localStorage.removeItem('appSettings');
-        
+
+        // Сбрасываем состояние в контексте
+        resetAllData();
+
         alert('✅ Все данные приложения сброшены!');
         setShowResetModal(false);
-        
+
         // Перенаправляем на главную страницу
         navigate('/', { replace: true });
     };

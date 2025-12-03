@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Navigation.css';
 
 function Navigation({ isLoggedIn, onLogout, username }) {
     const location = useLocation();
     const [showUsersDropdown, setShowUsersDropdown] = useState(false);
+    const dropdownRef = useRef(null);
 
     const users = {
         1: { id: 1, name: 'Анна', role: 'Фронтенд разработчик', progress: 75 },
@@ -17,24 +18,32 @@ function Navigation({ isLoggedIn, onLogout, username }) {
         alert(`👤 ${user.name}\n🎯 Должность: ${user.role}\n📊 Прогресс: ${user.progress}%`);
     };
 
+    // Обработчик клика вне dropdown
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowUsersDropdown(false);
+            }
+        };
+
+        if (showUsersDropdown) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showUsersDropdown]);
+
     return (
         <nav className="main-navigation">
             <div className="nav-brand">
-                <Link to="/">
+                <Link to="/technologies">
                     <h2>🚀 Трекер технологий</h2>
                 </Link>
             </div>
 
             <ul className="nav-menu">
-                <li>
-                    <Link
-                        to="/"
-                        className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
-                    >
-                        Главная
-                    </Link>
-                </li>
-                
                 {isLoggedIn ? (
                     <>
                         <li>
@@ -43,6 +52,14 @@ function Navigation({ isLoggedIn, onLogout, username }) {
                                 className={`nav-link ${location.pathname === '/technologies' ? 'active' : ''}`}
                             >
                                 Технологии
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/add-technology"
+                                className={`nav-link ${location.pathname === '/add-technology' ? 'active' : ''}`}
+                            >
+                                Добавить технологию
                             </Link>
                         </li>
                         <li>
@@ -64,8 +81,8 @@ function Navigation({ isLoggedIn, onLogout, username }) {
                         
                         {/* Вкладка пользователей для админа */}
                         {username === 'admin' && (
-                            <li className="dropdown-container">
-                                <button 
+                            <li className="dropdown-container" ref={dropdownRef}>
+                                <button
                                     className="nav-link dropdown-toggle"
                                     onClick={() => setShowUsersDropdown(!showUsersDropdown)}
                                 >
@@ -74,8 +91,8 @@ function Navigation({ isLoggedIn, onLogout, username }) {
                                 {showUsersDropdown && (
                                     <div className="dropdown-menu">
                                         {Object.values(users).map(user => (
-                                            <div 
-                                                key={user.id} 
+                                            <div
+                                                key={user.id}
                                                 className="dropdown-item"
                                                 onClick={() => handleUserSelect(user)}
                                             >

@@ -1,43 +1,36 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useTechnologies } from '../contexts/TechnologyContext';
 import './TechnologyDetail.css';
 import TechnologyNotes from '../components/TechnologyNotes';
+import TechnologyResources from '../components/TechnologyResources';
 
 function TechnologyDetail() {
     const { techId } = useParams();
     const navigate = useNavigate();
+    const { technologies, updateTechnologyStatus, updateTechnologyNotes } = useTechnologies();
     const [technology, setTechnology] = useState(null);
 
     useEffect(() => {
-        const saved = localStorage.getItem('technologies');
-        if (saved) {
-            const technologies = JSON.parse(saved);
-            const tech = technologies.find(t => t.id === parseInt(techId));
-            setTechnology(tech);
-        }
-    }, [techId]);
+        const tech = technologies.find(t => t.id === parseInt(techId));
+        setTechnology(tech);
+    }, [techId, technologies]);
 
-    const updateStatus = (newStatus) => {
-        const saved = localStorage.getItem('technologies');
-        if (saved) {
-            const technologies = JSON.parse(saved);
-            const updated = technologies.map(tech =>
-                tech.id === parseInt(techId) ? { ...tech, status: newStatus } : tech
-            );
-            localStorage.setItem('technologies', JSON.stringify(updated));
-            setTechnology({ ...technology, status: newStatus });
+    const updateStatus = async (newStatus) => {
+        try {
+            await updateTechnologyStatus(parseInt(techId), newStatus);
+            // Status will be updated via useEffect when technologies change
+        } catch (err) {
+            alert(`Ошибка обновления статуса: ${err.message}`);
         }
     };
 
-    const updateNotes = (newNotes) => {
-        const saved = localStorage.getItem('technologies');
-        if (saved) {
-            const technologies = JSON.parse(saved);
-            const updated = technologies.map(tech =>
-                tech.id === parseInt(techId) ? { ...tech, notes: newNotes } : tech
-            );
-            localStorage.setItem('technologies', JSON.stringify(updated));
-            setTechnology({ ...technology, notes: newNotes });
+    const updateNotes = async (newNotes) => {
+        try {
+            await updateTechnologyNotes(parseInt(techId), newNotes);
+            // Notes will be updated via useEffect when technologies change
+        } catch (err) {
+            alert(`Ошибка обновления заметок: ${err.message}`);
         }
     };
 
@@ -101,6 +94,8 @@ function TechnologyDetail() {
                     onNotesChange={(notes) => updateNotes(notes)}
                     techId={parseInt(techId)}
                 />
+
+                <TechnologyResources technology={technology} />
             </div>
         </div>
     );

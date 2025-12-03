@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from './Modal';
 import './QuickActions.css';
 
-function QuickActions({ onMarkAllCompleted, onResetAll, technologies }) {
+function QuickActions({ onMarkAllCompleted, onResetAll, technologies, onRandomSelect }) {
     const [showExportModal, setShowExportModal] = useState(false);
 
     const handleExport = () => {
@@ -35,6 +35,9 @@ function QuickActions({ onMarkAllCompleted, onResetAll, technologies }) {
                 </button>
                 <button onClick={onResetAll} className="btn btn-warning">
                     🔄 Сбросить все статусы
+                </button>
+                <button onClick={onRandomSelect} className="btn btn-primary">
+                    🎯 Выбрать случайную технологию
                 </button>
                 <button onClick={handleExport} className="btn btn-info">
                     📤 Экспорт данных

@@ -1,32 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTechnologies } from '../contexts/TechnologyContext';
 import './Statistics.css';
 
 function Statistics() {
-    const [technologies, setTechnologies] = useState([]);
+    const { technologies } = useTechnologies();
     const [chartData, setChartData] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const saved = localStorage.getItem('technologies');
-        let techs = [];
-        
-        if (saved) {
-            try {
-                techs = JSON.parse(saved);
-            } catch (e) {
-                console.error('Ошибка загрузки данных:', e);
-            }
-        }
-        
-        setTechnologies(techs);
-        
         // Подготовка данных для графика
-        const completed = techs.filter(t => t.status === 'completed').length;
-        const inProgress = techs.filter(t => t.status === 'in-progress').length;
-        const notStarted = techs.filter(t => t.status === 'not-started').length;
-        const total = techs.length;
-        
+        const completed = technologies.filter(t => t.status === 'completed').length;
+        const inProgress = technologies.filter(t => t.status === 'in-progress').length;
+        const notStarted = technologies.filter(t => t.status === 'not-started').length;
+        const total = technologies.length;
+
         setChartData({
             completed,
             inProgress,
@@ -36,14 +24,14 @@ function Statistics() {
             inProgressRate: total > 0 ? Math.round((inProgress / total) * 100) : 0,
             notStartedRate: total > 0 ? Math.round((notStarted / total) * 100) : 0
         });
-    }, []);
+    }, [technologies]);
 
     return (
         <div className="statistics-page">
             <div className="page-header">
                 <h1>📊 Статистика прогресса</h1>
-                <button onClick={() => navigate('/')} className="btn btn-primary back-btn">
-                    ← На главную
+                <button onClick={() => navigate('/technologies')} className="btn btn-primary back-btn">
+                    ← К технологиям
                 </button>
             </div>
 

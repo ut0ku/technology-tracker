@@ -6,7 +6,7 @@ function TechnologyNotes({ notes, onNotesChange, techId }) {
             <h4>Мои заметки:</h4>
             <textarea
                 value={notes}
-                onChange={(e) => onNotesChange(techId, e.target.value)}
+                onChange={(e) => onNotesChange(e.target.value)}
                 placeholder="Записывайте сюда важные моменты..."
                 rows="3"
                 className="notes-textarea"

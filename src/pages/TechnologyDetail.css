@@ -69,3 +69,99 @@
     font-size: 0.9em;
     margin-top: 10px;
 }
+
+/* Стили для дополнительных ресурсов */
+.technology-resources {
+    margin-top: 20px;
+}
+
+.technology-resources h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.resources-loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.resources-loading .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+.resources-error {
+    background: #fee;
+    color: #c33;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #e74c3c;
+}
+
+.resources-error button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 8px;
+}
+
+.resources-error button:hover {
+    background: #c0392b;
+}
+
+.resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resource-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.resource-item h5 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.resource-item p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.resource-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.resource-link:hover {
+    text-decoration: underline;
+}
+
+.resource-link::after {
+    content: '→';
+    font-size: 0.8em;
+}

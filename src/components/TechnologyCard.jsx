@@ -6,7 +6,7 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
     };
 
     return (
-        <div 
+        <div
             className={`technology-card ${status}`}
             onClick={handleClick}
         >
@@ -16,7 +16,7 @@ function TechnologyCard({ id, title, description, status, onStatusChange }) {
                     {status === 'completed' && '✅'}
                     {status === 'in-progress' && '🔄'}
                     {status === 'not-started' && '⏳'}
-                    {status === 'completed' ? 'Изучено' : 
+                    {status === 'completed' ? 'Изучено' :
                      status === 'in-progress' ? 'В процессе' : 'Не начато'}
                 </span>
             </div>

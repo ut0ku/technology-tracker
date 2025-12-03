@@ -5,6 +5,60 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.technology-list-page.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.technology-list-page.loading .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.technology-list-page.loading p {
+    color: #666;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.technology-list-page.error {
+    text-align: center;
+    padding: 50px;
+}
+
+.technology-list-page.error h2 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.technology-list-page.error p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.technology-list-page.error button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.technology-list-page.error button:hover {
+    background: #c0392b;
+}
+
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -318,5 +372,222 @@
     .status-badge {
         align-self: flex-start;
         margin-left: 0;
+    }
+}
+
+/* Стили для импорта дорожных карт */
+.roadmap-importer {
+    background: white;
+    border: 2px solid #e9ecef;
+    color: #333;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    position: relative;
+    border-left: 4px solid #667eea;
+}
+
+.roadmap-importer h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.roadmap-importer h3 .icon {
+    font-size: 1.2em;
+    color: #667eea;
+}
+
+.roadmap-importer p {
+    margin: 0 0 20px 0;
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+.roadmap-importer p .highlight {
+    background: #f8f9fa;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.import-controls {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.import-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    min-width: 280px;
+    justify-content: center;
+}
+
+.button-icon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.button-text {
+    flex: 1;
+    text-align: center;
+}
+
+.button-arrow {
+    font-size: 1.1em;
+    transition: transform 0.3s ease;
+}
+
+.import-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.import-button:hover:not(:disabled) .button-icon {
+    transform: scale(1.1);
+}
+
+.import-button:hover:not(:disabled) .button-arrow {
+    transform: translateX(3px);
+}
+
+.import-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.import-button:hover::before {
+    left: 100%;
+}
+
+.import-button:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.import-button:active:not(:disabled) {
+    transform: translateY(-1px) scale(1.02);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.import-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.import-status {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.import-status .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+.import-status p {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.progress-hint {
+    font-size: 0.9em;
+    opacity: 0.8;
+    font-style: italic;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-5px); }
+    60% { transform: translateY(-3px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .roadmap-importer {
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .roadmap-importer h3 {
+        font-size: 1.3em;
+    }
+
+    .import-button {
+        padding: 16px 28px;
+        min-width: 280px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .roadmap-importer {
+        padding: 20px;
+    }
+
+    .roadmap-importer h3 {
+        font-size: 1.1em;
+    }
+
+    .import-button {
+        padding: 14px 24px;
+        min-width: 250px;
+        font-size: 0.9em;
+        letter-spacing: 0.5px;
     }
 }

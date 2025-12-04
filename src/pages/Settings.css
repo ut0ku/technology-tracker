@@ -143,24 +143,69 @@
     text-align: center;
 }
 
-.import-textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #dee2e6;
+.file-drop-zone {
+    border: 2px dashed #dee2e6;
     border-radius: 8px;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.9em;
+    padding: 30px 20px;
     margin: 15px 0;
-    resize: vertical;
-    min-height: 200px;
+    text-align: center;
     background: #f8f9fa;
-    line-height: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
 }
 
-.import-textarea:focus {
-    outline: none;
+.file-drop-zone:hover {
     border-color: #667eea;
-    background: white;
+    background: #f0f2ff;
+}
+
+.file-drop-zone.file-selected {
+    border-color: #28a745;
+    background: #f8fff8;
+}
+
+.drop-placeholder {
+    color: #6c757d;
+}
+
+.drop-placeholder .drop-icon {
+    font-size: 2em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.drop-placeholder p {
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #495057;
+}
+
+.file-info .file-icon {
+    font-size: 1.5em;
+}
+
+.file-info .file-name {
+    font-weight: 500;
+    color: #28a745;
+}
+
+.file-info .file-size {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.file-select-btn {
+    margin-top: 15px !important;
+    display: inline-block !important;
+    cursor: pointer;
 }
 
 .reset-modal-content ul {

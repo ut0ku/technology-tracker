@@ -9,44 +9,12 @@ function RoadmapImporter() {
     try {
       setImporting(true);
 
-      // Имитируем загрузку дорожной карты из API
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      // Большой пул технологий из разных категорий
-      const allTechnologies = [
-        // Frontend
-        { title: 'HTML5 & CSS3', description: 'Современная верстка и стилизация', category: 'frontend', difficulty: 'beginner' },
-        { title: 'JavaScript ES6+', description: 'Современный JavaScript', category: 'frontend', difficulty: 'intermediate' },
-        { title: 'React.js', description: 'Библиотека для создания UI', category: 'frontend', difficulty: 'intermediate' },
-        { title: 'Vue.js', description: 'Прогрессивный JavaScript фреймворк', category: 'frontend', difficulty: 'intermediate' },
-        { title: 'Angular', description: 'Фреймворк для создания веб-приложений', category: 'frontend', difficulty: 'advanced' },
-        { title: 'TypeScript', description: 'Типизированный JavaScript', category: 'frontend', difficulty: 'advanced' },
-        { title: 'Sass/SCSS', description: 'Препроцессор CSS', category: 'frontend', difficulty: 'intermediate' },
-
-        // Backend
-        { title: 'Node.js', description: 'JavaScript на сервере', category: 'backend', difficulty: 'intermediate' },
-        { title: 'Express.js', description: 'Фреймворк для Node.js', category: 'backend', difficulty: 'intermediate' },
-        { title: 'Python', description: 'Язык программирования', category: 'backend', difficulty: 'beginner' },
-        { title: 'Django', description: 'Фреймворк для Python', category: 'backend', difficulty: 'intermediate' },
-        { title: 'MongoDB', description: 'NoSQL база данных', category: 'backend', difficulty: 'intermediate' },
-        { title: 'PostgreSQL', description: 'Реляционная база данных', category: 'backend', difficulty: 'advanced' },
-        { title: 'REST API', description: 'Проектирование веб-сервисов', category: 'backend', difficulty: 'intermediate' },
-        { title: 'GraphQL', description: 'Язык запросов для API', category: 'backend', difficulty: 'advanced' },
-
-        // DevOps & Tools
-        { title: 'Git', description: 'Система контроля версий', category: 'tools', difficulty: 'beginner' },
-        { title: 'Docker', description: 'Контейнеризация приложений', category: 'devops', difficulty: 'intermediate' },
-        { title: 'Kubernetes', description: 'Оркестрация контейнеров', category: 'devops', difficulty: 'advanced' },
-        { title: 'AWS', description: 'Облачная платформа Amazon', category: 'devops', difficulty: 'advanced' },
-        { title: 'Linux', description: 'Операционная система', category: 'tools', difficulty: 'intermediate' },
-        { title: 'CI/CD', description: 'Непрерывная интеграция и доставка', category: 'devops', difficulty: 'advanced' },
-
-        // Mobile & Other
-        { title: 'React Native', description: 'Кроссплатформенная мобильная разработка', category: 'mobile', difficulty: 'advanced' },
-        { title: 'Flutter', description: 'Фреймворк для мобильной разработки', category: 'mobile', difficulty: 'intermediate' },
-        { title: 'Testing', description: 'Модульное и интеграционное тестирование', category: 'tools', difficulty: 'intermediate' },
-        { title: 'Security', description: 'Безопасность веб-приложений', category: 'tools', difficulty: 'advanced' }
-      ];
+      // Загружаем технологии из JSON файла
+      const response = await fetch('/technology-tracker/technologies.json');
+      if (!response.ok) {
+        throw new Error('Не удалось загрузить файл технологий');
+      }
+      const allTechnologies = await response.json();
 
       // Рандомно выбираем 3-7 технологий
       const numToImport = Math.floor(Math.random() * 5) + 3; // 3-7 технологий

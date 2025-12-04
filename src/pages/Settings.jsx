@@ -6,11 +6,9 @@ import './Settings.css';
 
 function Settings() {
     const { technologies, resetAllData } = useTechnologies();
-    const [settings, setSettings] = useState({
-        exportFormat: 'json'
-    });
+    const [settings, setSettings] = useState({});
     const [showImportModal, setShowImportModal] = useState(false);
-    const [importData, setImportData] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
     const [showResetModal, setShowResetModal] = useState(false);
     const navigate = useNavigate();
 
@@ -20,12 +18,6 @@ function Settings() {
             setSettings(JSON.parse(savedSettings));
         }
     }, []);
-
-    const handleSettingChange = (key, value) => {
-        const newSettings = { ...settings, [key]: value };
-        setSettings(newSettings);
-        localStorage.setItem('appSettings', JSON.stringify(newSettings));
-    };
 
     const handleExportData = () => {
         const data = {
@@ -45,26 +37,46 @@ function Settings() {
         URL.revokeObjectURL(url);
     };
 
-    const handleImportData = () => {
-        try {
-            const parsedData = JSON.parse(importData);
-            if (parsedData.technologies) {
-                localStorage.setItem('technologies', JSON.stringify(parsedData.technologies));
-                
-                if (parsedData.settings) {
-                    localStorage.setItem('appSettings', JSON.stringify(parsedData.settings));
-                }
-                
-                alert('✅ Данные успешно импортированы!');
-                setShowImportModal(false);
-                setImportData('');
-                window.location.reload();
-            } else {
-                alert('❌ Некорректный формат данных');
-            }
-        } catch (error) {
-            alert('❌ Ошибка при импорте данных: ' + error.message);
+    const handleFileSelect = (file) => {
+        if (file && file.type === 'application/json') {
+            setSelectedFile(file);
+        } else {
+            alert('❌ Пожалуйста, выберите файл в формате JSON');
         }
+    };
+
+    const handleImportData = () => {
+        if (!selectedFile) {
+            alert('❌ Пожалуйста, выберите файл для импорта');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const parsedData = JSON.parse(e.target.result);
+                if (parsedData.technologies) {
+                    localStorage.setItem('technologies', JSON.stringify(parsedData.technologies));
+
+                    if (parsedData.settings) {
+                        localStorage.setItem('appSettings', JSON.stringify(parsedData.settings));
+                    }
+
+                    // Удаляем флаг сброса данных, чтобы данные загрузились
+                    localStorage.removeItem('dataReset');
+
+                    alert('✅ Данные успешно импортированы!');
+                    setShowImportModal(false);
+                    setSelectedFile(null);
+                    window.location.reload();
+                } else {
+                    alert('❌ Некорректный формат данных');
+                }
+            } catch (error) {
+                alert('❌ Ошибка при импорте данных: ' + error.message);
+            }
+        };
+        reader.readAsText(selectedFile);
     };
 
     const handleResetData = () => {
@@ -112,20 +124,6 @@ function Settings() {
                     </div>
                 </div>
 
-                <div className="settings-section">
-                    <h2>Экспорт данных</h2>
-                    <div className="setting-item">
-                        <label>Формат экспорта:</label>
-                        <select 
-                            value={settings.exportFormat}
-                            onChange={(e) => handleSettingChange('exportFormat', e.target.value)}
-                        >
-                            <option value="json">JSON</option>
-                            <option value="csv">CSV</option>
-                            <option value="txt">Текстовый файл</option>
-                        </select>
-                    </div>
-                </div>
             </div>
 
             <Modal
@@ -134,19 +132,50 @@ function Settings() {
                 title="Импорт данных"
             >
                 <div className="import-modal-content">
-                    <p>Вставьте JSON-данные для импорта:</p>
-                    <textarea
-                        value={importData}
-                        onChange={(e) => setImportData(e.target.value)}
-                        placeholder='{"technologies": [...]}'
-                        rows="10"
-                        className="import-textarea"
-                    />
+                    <p>Выберите JSON-файл для импорта или перетащите его сюда:</p>
+                    <div
+                        className={`file-drop-zone ${selectedFile ? 'file-selected' : ''}`}
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }}
+                        onDrop={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const files = e.dataTransfer.files;
+                            if (files.length > 0) {
+                                handleFileSelect(files[0]);
+                            }
+                        }}
+                    >
+                        {selectedFile ? (
+                            <div className="file-info">
+                                <span className="file-icon">📄</span>
+                                <span className="file-name">{selectedFile.name}</span>
+                                <span className="file-size">({(selectedFile.size / 1024).toFixed(1)} KB)</span>
+                            </div>
+                        ) : (
+                            <div className="drop-placeholder">
+                                <span className="drop-icon">📂</span>
+                                <p>Перетащите JSON-файл сюда или нажмите "Выбрать файл"</p>
+                            </div>
+                        )}
+                        <input
+                            type="file"
+                            accept=".json"
+                            onChange={(e) => handleFileSelect(e.target.files[0])}
+                            style={{ display: 'none' }}
+                            id="file-input"
+                        />
+                        <label htmlFor="file-input" className="btn btn-secondary file-select-btn">
+                            Выбрать файл
+                        </label>
+                    </div>
                     <div className="modal-actions">
-                        <button onClick={handleImportData} className="btn btn-success">
+                        <button onClick={handleImportData} className="btn btn-success" disabled={!selectedFile}>
                             Импортировать
                         </button>
-                        <button onClick={() => setShowImportModal(false)} className="btn btn-secondary">
+                        <button onClick={() => { setShowImportModal(false); setSelectedFile(null); }} className="btn btn-secondary">
                             Отмена
                         </button>
                     </div>

@@ -43,7 +43,6 @@ function TechnologySearch({ onSearch }) {
 
       console.log(` Поиск технологий по запросу: "${query}"`);
 
-      // Имитируем API запрос с поиском
       const response = await fetch(
         `https://dummyjson.com/products/search?q=${encodeURIComponent(query)}`,
         { signal: abortControllerRef.current.signal }

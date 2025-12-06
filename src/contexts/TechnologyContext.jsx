@@ -13,16 +13,13 @@ export function TechnologyProvider({ children }) {
       setLoading(true);
       setError(null);
 
-      // Проверяем, был ли выполнен сброс данных
       const dataReset = localStorage.getItem('dataReset');
       if (dataReset === 'true') {
-        // Если сброс был выполнен, не загружаем mock данные
         setTechnologies([]);
         setLoading(false);
         return;
       }
 
-      // Пытаемся загрузить из localStorage
       const savedTechnologies = localStorage.getItem('technologies');
       if (savedTechnologies) {
         const parsedTechnologies = JSON.parse(savedTechnologies);
@@ -65,7 +62,7 @@ export function TechnologyProvider({ children }) {
         }
       ];
 
-      // Имитируем задержку загрузки
+      // Имитация задержки загрузки
       await new Promise(resolve => setTimeout(resolve, 500));
       setTechnologies(mockTechnologies);
 
@@ -81,7 +78,6 @@ export function TechnologyProvider({ children }) {
   const saveTechnologies = (techs) => {
     try {
       localStorage.setItem('technologies', JSON.stringify(techs));
-      // Очищаем флаг сброса данных, если есть сохраненные технологии
       if (techs.length > 0) {
         localStorage.removeItem('dataReset');
       }
@@ -112,7 +108,6 @@ export function TechnologyProvider({ children }) {
     }
   };
 
-  // Добавление нескольких технологий
   const addMultipleTechnologies = async (techArray) => {
     try {
       // Имитация API запроса
@@ -165,7 +160,6 @@ export function TechnologyProvider({ children }) {
   // Обновление заметок технологии
   const updateTechnologyNotes = async (techId, newNotes) => {
     try {
-      // Имитируем API запрос
       await new Promise(resolve => setTimeout(resolve, 300));
 
       setTechnologies(prev =>
@@ -179,11 +173,49 @@ export function TechnologyProvider({ children }) {
     }
   };
 
+  const updateTechnologyDeadline = async (techId, newDeadline) => {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      setTechnologies(prev =>
+        prev.map(tech =>
+          tech.id === techId ? { ...tech, deadline: newDeadline } : tech
+        )
+      );
+    } catch (err) {
+      console.error('Ошибка обновления дедлайна:', err);
+      throw err;
+    }
+  };
+
+  // Удаление технологии
+  const deleteTechnology = async (techId) => {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      setTechnologies(prev => prev.filter(tech => tech.id !== techId));
+    } catch (err) {
+      console.error('Ошибка удаления технологии:', err);
+      throw err;
+    }
+  };
+
   // Сброс всех данных
   const resetAllData = () => {
     localStorage.removeItem('technologies');
     localStorage.setItem('dataReset', 'true');
     setTechnologies([]);
+  };
+
+  const setAllTechnologies = (techArray) => {
+    try {
+      // Имитируем API запрос
+      setTimeout(() => {
+        setTechnologies(techArray);
+      }, 100);
+    } catch (err) {
+      throw new Error('Не удалось установить технологии');
+    }
   };
 
   const value = {
@@ -195,7 +227,10 @@ export function TechnologyProvider({ children }) {
     addMultipleTechnologies,
     updateTechnologyStatus,
     updateTechnologyNotes,
-    resetAllData
+    updateTechnologyDeadline,
+    deleteTechnology,
+    resetAllData,
+    setAllTechnologies
   };
 
   return (

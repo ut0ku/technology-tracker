@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useNotification } from '../contexts/NotificationContext';
 import './Login.css';
 
 function Login({ onLogin }) {
@@ -7,6 +8,7 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { showNotification } = useNotification();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,10 +19,13 @@ function Login({ onLogin }) {
             // Сохраняем данные авторизации
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('username', username);
-            
+
             // Обновляем состояние в App
             onLogin(username);
-            
+
+            // Показываем уведомление
+            showNotification('Успешный вход в систему!', 'success');
+
             // Перенаправляем на главную
             navigate('/');
         } else {

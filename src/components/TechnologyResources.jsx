@@ -5,14 +5,13 @@ function TechnologyResources({ technology }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Функция для загрузки ресурсов из API
+  // Загрузка из API
   const fetchResources = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      // Имитируем запрос к API для получения ресурсов технологии
-      // В реальном приложении здесь был бы запрос к соответствующему API
+      // Имитация API запроса
       const mockResources = [
         {
           id: 1,
@@ -34,7 +33,7 @@ function TechnologyResources({ technology }) {
         }
       ];
 
-      // Имитируем задержку API
+      // Имитация задержки API
       await new Promise(resolve => setTimeout(resolve, 1000));
 
       setResources(mockResources);
@@ -47,7 +46,6 @@ function TechnologyResources({ technology }) {
     }
   };
 
-  // Загружаем ресурсы при изменении технологии (только при изменении ID или названия)
   useEffect(() => {
     if (technology?.id) {
       fetchResources();

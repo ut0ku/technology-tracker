@@ -11,18 +11,18 @@
 
 .progress-label {
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     font-size: 0.9em;
 }
 
 .progress-percentage {
     font-weight: bold;
-    color: #667eea;
+    color: var(--btn-primary);
     font-size: 0.9em;
 }
 
 .progress-bar-outer {
-    background-color: #f0f0f0;
+    background-color: var(--border-color);
     border-radius: 10px;
     overflow: hidden;
 }

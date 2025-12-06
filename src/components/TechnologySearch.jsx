@@ -5,33 +5,30 @@ function TechnologySearch({ onSearch }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Используем useRef для хранения таймера, AbortController и кэша
+  // useRef для хранения таймера, AbortController и кэша
   const searchTimeoutRef = useRef(null);
   const abortControllerRef = useRef(null);
   const searchCacheRef = useRef(new Map());
 
-  // Функция для поиска технологий
+  // Поиск технологий
   const searchTechnologies = async (query) => {
-    // Отменяем предыдущий запрос, если он существует
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
 
-    // Создаем новый AbortController для текущего запроса
+    // Новый AbortController для текущего запроса
     abortControllerRef.current = new AbortController();
 
     try {
       setLoading(true);
       setError(null);
 
-      // Если поисковый запрос пустой, очищаем результаты
       if (!query.trim()) {
         onSearch([]);
         setLoading(false);
         return;
       }
 
-      // Проверяем кэш
       const cacheKey = query.trim().toLowerCase();
       if (searchCacheRef.current.has(cacheKey)) {
         console.log(`📋 Результаты для "${query}" взяты из кэша`);
@@ -56,9 +53,8 @@ function TechnologySearch({ onSearch }) {
 
       console.log(`✅ Найдено ${data.products?.length || 0} технологий для запроса "${query}"`);
 
-      // Преобразуем продукты в формат технологий
       const technologies = data.products?.map(product => ({
-        id: product.id + 1000, // Чтобы не пересекаться с существующими ID
+        id: product.id + 1000,
         title: product.title,
         description: product.description,
         category: 'api-search',
@@ -69,13 +65,11 @@ function TechnologySearch({ onSearch }) {
         thumbnail: product.thumbnail
       })) || [];
 
-      // Сохраняем в кэш
       searchCacheRef.current.set(cacheKey, technologies);
 
       onSearch(technologies);
 
     } catch (err) {
-      // Игнорируем ошибки отмены запроса
       if (err.name !== 'AbortError') {
         setError(err.message);
         console.error('Ошибка при поиске технологий:', err);
@@ -85,23 +79,21 @@ function TechnologySearch({ onSearch }) {
     }
   };
 
-  // Обработчик изменения поискового запроса
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
 
-    // Очищаем предыдущий таймер
+    // Очистка предыдущего таймера
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current);
     }
 
-    // Устанавливаем новый таймер для debounce (500ms)
+    // Новый таймер для debounce (500ms)
     searchTimeoutRef.current = setTimeout(() => {
       searchTechnologies(value);
     }, 500);
   };
 
-  // Очистка при размонтировании компонента
   useEffect(() => {
     return () => {
       if (searchTimeoutRef.current) {

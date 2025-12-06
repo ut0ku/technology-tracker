@@ -12,7 +12,7 @@ function QuickActions({ onMarkAllCompleted, onResetAll, technologies, onRandomSe
         };
         const dataStr = JSON.stringify(data, null, 2);
         
-        // Создаем blob и ссылку для скачивания
+        // blob и ссылка для скачивания
         const blob = new Blob([dataStr], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

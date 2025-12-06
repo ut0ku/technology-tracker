@@ -1,8 +1,10 @@
 .settings-page {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .page-header {
@@ -11,13 +13,13 @@
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     gap: 20px;
 }
 
 .page-header h1 {
     margin: 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.8em;
     font-weight: 700;
     flex: 1;
@@ -32,32 +34,37 @@
     text-align: center;
 }
 
+.localStorage-section {
+    margin-bottom: 40px;
+}
+
 .settings-container {
     max-width: 800px;
     margin: 0 auto;
 }
 
 .settings-section {
-    background: #f8f9fa;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 25px;
-    border: 1px solid #e9ecef;
-    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .settings-section:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .settings-section h2 {
     margin: 0 0 20px 0;
-    color: #495057;
+    color: var(--text-color);
     font-size: 1.3em;
     font-weight: 600;
     padding-bottom: 15px;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .data-management {
@@ -86,56 +93,59 @@
 }
 
 .data-info {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
 }
 
 .data-info p {
     margin: 10px 0;
-    color: #495057;
+    color: var(--text-color);
     font-size: 1em;
     display: flex;
     justify-content: space-between;
 }
 
 .data-info strong {
-    color: #667eea;
+    color: var(--btn-primary);
     font-weight: 600;
 }
 
 .setting-item {
     padding: 15px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-color);
 }
 
 .setting-item label {
-    color: #495057;
+    color: var(--text-color);
     font-weight: 500;
     font-size: 1em;
 }
 
 .setting-item select {
     padding: 10px 15px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 0.95em;
     min-width: 200px;
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .setting-item select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--btn-primary);
+    box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.1);
 }
 
 .import-modal-content,
@@ -144,29 +154,29 @@
 }
 
 .file-drop-zone {
-    border: 2px dashed #dee2e6;
+    border: 2px dashed var(--border-color);
     border-radius: 8px;
     padding: 30px 20px;
     margin: 15px 0;
     text-align: center;
-    background: #f8f9fa;
+    background: var(--card-bg);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
 }
 
 .file-drop-zone:hover {
-    border-color: #667eea;
-    background: #f0f2ff;
+    border-color: var(--btn-primary);
+    background: var(--border-color);
 }
 
 .file-drop-zone.file-selected {
-    border-color: #28a745;
-    background: #f8fff8;
+    border-color: var(--btn-success);
+    background: var(--card-bg);
 }
 
 .drop-placeholder {
-    color: #6c757d;
+    color: var(--text-color);
 }
 
 .drop-placeholder .drop-icon {
@@ -185,7 +195,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    color: #495057;
+    color: var(--text-color);
 }
 
 .file-info .file-icon {
@@ -194,11 +204,11 @@
 
 .file-info .file-name {
     font-weight: 500;
-    color: #28a745;
+    color: var(--btn-success);
 }
 
 .file-info .file-size {
-    color: #6c757d;
+    color: var(--text-color);
     font-size: 0.9em;
 }
 
@@ -216,13 +226,13 @@
 
 .reset-modal-content li {
     margin: 8px 0;
-    color: #495057;
+    color: var(--text-color);
 }
 
 .warning-note {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    color: #856404;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--btn-warning);
     padding: 12px;
     border-radius: 8px;
     margin: 20px 0;
@@ -231,7 +241,7 @@
 }
 
 .warning-note strong {
-    color: #856404;
+    color: var(--btn-warning);
 }
 
 .modal-actions {

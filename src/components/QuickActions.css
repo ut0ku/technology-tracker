@@ -1,14 +1,16 @@
 .quick-actions {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .quick-actions h3 {
     margin: 0 0 15px 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.2em;
 }
 
@@ -31,22 +33,22 @@
 }
 
 .btn-success {
-    background-color: #45b7d1;
+    background-color: var(--btn-success);
     color: white;
 }
 
 .btn-warning {
-    background-color: #ff6b6b;
+    background-color: var(--btn-danger);
     color: white;
 }
 
 .btn-info {
-    background-color: #4ecdc4;
+    background-color: var(--btn-info);
     color: white;
 }
 
 .btn-primary {
-    background-color: #667eea;
+    background-color: var(--btn-primary);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -56,7 +58,7 @@
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .modal-actions {

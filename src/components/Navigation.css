@@ -1,19 +1,21 @@
 .main-navigation {
-    background: white;
+    background: var(--nav-bg);
+    color: var(--nav-text);
     padding: 15px 25px;
     border-radius: 12px;
     margin-bottom: 25px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     flex-wrap: wrap;
+    border: 1px solid var(--border-color);
 }
 
 .nav-brand h2 {
     margin: 0 100px 15px 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.5em;
     white-space: nowrap;
 }
@@ -41,7 +43,7 @@
 
 .nav-link {
     text-decoration: none;
-    color: #666;
+    color: var(--nav-text);
     font-weight: 500;
     padding: 8px 15px;
     border-radius: 6px;
@@ -55,13 +57,13 @@
 }
 
 .nav-link:hover {
-    background-color: #f0f4ff;
-    color: #667eea;
+    background-color: var(--nav-hover);
+    color: var(--nav-active);
     text-decoration: none;
 }
 
 .nav-link.active {
-    background-color: #667eea;
+    background-color: var(--nav-active);
     color: white;
 }
 
@@ -73,7 +75,7 @@
 .dropdown-toggle {
     background: none;
     border: none;
-    color: #666;
+    color: var(--nav-text);
     font-weight: 500;
     padding: 8px 15px;
     border-radius: 6px;
@@ -92,22 +94,22 @@
 }
 
 .dropdown-toggle:hover {
-    background-color: #f0f4ff;
-    color: #667eea;
+    background-color: var(--nav-hover);
+    color: var(--nav-active);
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
+    background: var(--card-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px var(--shadow-color);
     min-width: 250px;
     z-index: 1000;
     margin-top: 5px;
     overflow: hidden;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
 }
 
 .dropdown-item {
@@ -127,7 +129,7 @@
 
 .user-name {
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 5px;
     font-size: 1em;
     white-space: nowrap;
@@ -171,7 +173,7 @@
 }
 
 .username {
-    color: #495057;
+    color: var(--text-color);
     font-weight: 500;
     font-size: 0.9em;
     overflow: hidden;
@@ -180,7 +182,7 @@
 }
 
 .logout-btn {
-    background: #ff6b6b;
+    background: var(--btn-danger);
     color: white;
     border: none;
     padding: 8px 16px;
@@ -194,7 +196,7 @@
 }
 
 .logout-btn:hover {
-    background: #ff5252;
+    background: #e53935;
     transform: translateY(-1px);
 }
 

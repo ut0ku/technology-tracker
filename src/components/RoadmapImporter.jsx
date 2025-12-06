@@ -9,26 +9,25 @@ function RoadmapImporter() {
     try {
       setImporting(true);
 
-      // Загружаем технологии из JSON файла
+      // Загрузка из Json
       const response = await fetch('/technology-tracker/technologies.json');
       if (!response.ok) {
         throw new Error('Не удалось загрузить файл технологий');
       }
       const allTechnologies = await response.json();
 
-      // Рандомно выбираем 3-7 технологий
+      // Рандомный выбор
       const numToImport = Math.floor(Math.random() * 5) + 3; // 3-7 технологий
       const shuffled = [...allTechnologies].sort(() => 0.5 - Math.random());
       const technologiesToImport = shuffled.slice(0, numToImport);
 
-      // Добавляем выбранные технологии
       const baseId = Date.now();
       const technologiesWithIds = technologiesToImport.map((tech, index) => ({
         ...tech,
         id: baseId + index
       }));
 
-      // Добавляем все технологии одним вызовом
+      // Добавление всех технологий одним вызовом
       await addMultipleTechnologies(technologiesWithIds);
 
       setTimeout(() => {

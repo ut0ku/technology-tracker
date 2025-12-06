@@ -1,14 +1,16 @@
 .filter-tabs {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .filter-tabs h3 {
     margin: 0 0 15px 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.2em;
 }
 
@@ -20,8 +22,9 @@
 
 .tab-btn {
     padding: 10px 20px;
-    border: 2px solid #e0e0e0;
-    background: white;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
@@ -31,12 +34,12 @@
 }
 
 .tab-btn.active {
-    border-color: #667eea;
-    background-color: #667eea;
+    border-color: var(--btn-primary);
+    background-color: var(--btn-primary);
     color: white;
 }
 
 .tab-btn:hover {
-    border-color: #667eea;
-    background-color: #f0f4ff;
+    border-color: var(--btn-primary);
+    background-color: var(--border-color);
 }

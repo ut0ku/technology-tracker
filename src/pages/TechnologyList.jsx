@@ -6,6 +6,7 @@ import FilterTabs from '../components/FilterTabs';
 import QuickActions from '../components/QuickActions';
 import RoadmapImporter from '../components/RoadmapImporter';
 import TechnologySearch from '../components/TechnologySearch';
+import BulkStatusEditor from '../components/BulkStatusEditor';
 import './TechnologyList.css';
 
 function TechnologyList() {
@@ -23,6 +24,7 @@ function TechnologyList() {
     const [activeFilter, setActiveFilter] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [showBulkEditor, setShowBulkEditor] = useState(false);
     const navigate = useNavigate();
 
     // Функции для работы с технологиями
@@ -144,6 +146,16 @@ function TechnologyList() {
                 onRandomSelect={handleRandomSelect}
             />
 
+            <div className="bulk-actions">
+                <button
+                    onClick={() => setShowBulkEditor(true)}
+                    className="btn btn-primary bulk-edit-btn"
+                    disabled={technologies.length === 0}
+                >
+                    📝 Редактировать статусы
+                </button>
+            </div>
+
             <RoadmapImporter />
 
             <TechnologySearch onSearch={handleSearchResults} />
@@ -212,6 +224,10 @@ function TechnologyList() {
                         <p>🔍 Нет технологий по вашему запросу</p>
                     )}
                 </div>
+            )}
+
+            {showBulkEditor && (
+                <BulkStatusEditor onClose={() => setShowBulkEditor(false)} />
             )}
         </div>
     );

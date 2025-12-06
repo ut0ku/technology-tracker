@@ -1,33 +1,35 @@
 .technology-card {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     border-radius: 12px;
     padding: 20px;
     margin: 15px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #ccc;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-left: 5px solid var(--border-color);
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .technology-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 /* Стили для разных статусов */
 .technology-card.not-started {
-    border-left-color: #ff6b6b;
-    background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
+    border-left-color: var(--btn-danger);
+    background: linear-gradient(135deg, var(--card-bg) 0%, #2a1a1a 100%);
 }
 
 .technology-card.in-progress {
-    border-left-color: #4ecdc4;
-    background: linear-gradient(135deg, #fff8f0 0%, #fff3e0 100%);
+    border-left-color: var(--btn-info);
+    background: linear-gradient(135deg, var(--card-bg) 0%, #1a2a1a 100%);
 }
 
 .technology-card.completed {
-    border-left-color: #45b7d1;
-    background: linear-gradient(135deg, #f8fff8 0%, #e8f5e9 100%);
+    border-left-color: var(--btn-success);
+    background: linear-gradient(135deg, var(--card-bg) 0%, #1a1a2a 100%);
 }
 
 .card-header {
@@ -39,7 +41,7 @@
 
 .card-title {
     margin: 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.3em;
     font-weight: 600;
     flex: 1;
@@ -56,29 +58,29 @@
 }
 
 .status-badge.not-started {
-    background-color: #ff6b6b;
+    background-color: var(--btn-danger);
     color: white;
 }
 
 .status-badge.in-progress {
-    background-color: #4ecdc4;
+    background-color: var(--btn-info);
     color: white;
 }
 
 .status-badge.completed {
-    background-color: #45b7d1;
+    background-color: var(--btn-success);
     color: white;
 }
 
 .card-description {
-    color: #666;
+    color: var(--text-color);
     margin: 0 0 15px 0;
     line-height: 1.5;
 }
 
 .progress-indicator {
     height: 6px;
-    background-color: #f0f0f0;
+    background-color: var(--border-color);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -89,16 +91,16 @@
 }
 
 .progress-bar.not-started {
-    background-color: #ff6b6b;
+    background-color: var(--btn-danger);
     width: 0%;
 }
 
 .progress-bar.in-progress {
-    background-color: #4ecdc4;
+    background-color: var(--btn-info);
     width: 50%;
 }
 
 .progress-bar.completed {
-    background-color: #45b7d1;
+    background-color: var(--btn-success);
     width: 100%;
 }

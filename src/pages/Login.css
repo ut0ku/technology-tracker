@@ -7,12 +7,14 @@
 }
 
 .login-container {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px var(--shadow-color);
     width: 100%;
     max-width: 450px;
+    border: 1px solid var(--border-color);
 }
 
 .login-header {
@@ -22,14 +24,14 @@
 
 .login-header h1 {
     margin: 0 0 10px 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.8em;
     font-weight: 700;
 }
 
 .login-header p {
     margin: 0;
-    color: #666;
+    color: var(--text-color);
     font-size: 0.95em;
 }
 
@@ -55,7 +57,7 @@
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #495057;
+    color: var(--text-color);
     font-weight: 500;
     font-size: 0.9em;
 }
@@ -63,16 +65,18 @@
 .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 1em;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     transition: all 0.3s ease;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--btn-primary);
+    box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.1);
 }
 
 .login-btn {
@@ -86,11 +90,11 @@
 .login-hint {
     margin-top: 25px;
     padding: 15px;
-    background: #f8f9fa;
+    background: var(--card-bg);
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
     font-size: 0.85em;
-    color: #666;
+    color: var(--text-color);
 }
 
 .credentials {
@@ -103,44 +107,45 @@
     align-items: center;
     margin: 5px 0;
     padding: 8px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 4px;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
 }
 
 .credential-label {
     font-weight: 500;
-    color: #495057;
+    color: var(--text-color);
 }
 
 .credential-value {
     font-family: monospace;
-    color: #667eea;
+    color: var(--btn-primary);
     font-weight: 500;
 }
 
 .admin-feature {
     margin-top: 10px;
     padding: 8px;
-    background: #e3f2fd;
+    background: var(--card-bg);
     border-radius: 4px;
-    color: #1565c0;
+    color: var(--text-color);
     font-size: 0.85em;
     text-align: center;
-    border: 1px solid #bbdefb;
+    border: 1px solid var(--border-color);
 }
 
 .login-footer {
     margin-top: 20px;
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid #eee;
-    color: #666;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
     font-size: 0.9em;
 }
 
 .footer-link {
-    color: #667eea;
+    color: var(--btn-primary);
     text-decoration: none;
     font-weight: 500;
 }

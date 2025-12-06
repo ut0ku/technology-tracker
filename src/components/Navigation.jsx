@@ -1,11 +1,16 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import IconButton from '@mui/material/IconButton';
 import './Navigation.css';
 
 function Navigation({ isLoggedIn, onLogout, username }) {
     const location = useLocation();
     const [showUsersDropdown, setShowUsersDropdown] = useState(false);
     const dropdownRef = useRef(null);
+    const { isDarkMode, toggleTheme } = useTheme();
 
     const users = {
         1: { id: 1, name: 'Анна', role: 'Фронтенд разработчик', progress: 75 },
@@ -107,7 +112,13 @@ function Navigation({ isLoggedIn, onLogout, username }) {
                                 )}
                             </li>
                         )}
-                        
+
+                        <li className="theme-toggle">
+                            <IconButton onClick={toggleTheme} color="inherit">
+                                {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                            </IconButton>
+                        </li>
+
                         <li className="user-info">
                             <span className="username">👤 {username}</span>
                             <button onClick={onLogout} className="logout-btn">

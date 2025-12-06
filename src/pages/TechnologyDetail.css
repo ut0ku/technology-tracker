@@ -1,12 +1,14 @@
 .technology-detail-page {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .back-link {
-    color: #667eea;
+    color: var(--btn-primary);
     text-decoration: none;
     font-weight: 500;
     margin-bottom: 15px;
@@ -20,17 +22,17 @@
 .detail-section {
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .detail-section h3 {
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 15px;
     font-size: 1.3em;
 }
 
 .detail-section p {
-    color: #666;
+    color: var(--text-color);
     line-height: 1.6;
 }
 
@@ -43,8 +45,9 @@
 
 .status-buttons button {
     padding: 10px 20px;
-    border: 2px solid #e0e0e0;
-    background: white;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9em;
@@ -54,18 +57,18 @@
 }
 
 .status-buttons button:hover {
-    border-color: #667eea;
-    background-color: #f0f4ff;
+    border-color: var(--btn-primary);
+    background-color: var(--nav-hover);
 }
 
 .status-buttons button.active {
-    border-color: #667eea;
-    background-color: #667eea;
+    border-color: var(--btn-primary);
+    background-color: var(--btn-primary);
     color: white;
 }
 
 .current-status {
-    color: #666;
+    color: var(--text-color);
     font-size: 0.9em;
     margin-top: 10px;
 }
@@ -76,7 +79,7 @@
 }
 
 .technology-resources h4 {
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 15px;
     font-size: 1.2em;
     font-weight: 600;
@@ -98,12 +101,13 @@
 }
 
 .resources-error {
-    background: #fee;
-    color: #c33;
+    background: var(--card-bg);
+    color: var(--btn-danger);
     padding: 12px 16px;
     border-radius: 8px;
     margin-bottom: 15px;
-    border-left: 4px solid #e74c3c;
+    border-left: 4px solid var(--btn-danger);
+    border: 1px solid var(--border-color);
 }
 
 .resources-error button {
@@ -128,27 +132,29 @@
 }
 
 .resource-item {
-    background: #f8f9fa;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--btn-primary);
+    border: 1px solid var(--border-color);
 }
 
 .resource-item h5 {
     margin: 0 0 8px 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1em;
     font-weight: 600;
 }
 
 .resource-item p {
     margin: 5px 0;
-    color: #666;
+    color: var(--text-color);
     font-size: 0.9em;
 }
 
 .resource-link {
-    color: #667eea;
+    color: var(--btn-primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9em;
@@ -164,4 +170,167 @@
 .resource-link::after {
     content: '→';
     font-size: 0.8em;
+}
+
+/* Action buttons section */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Delete confirmation modal */
+.delete-confirm-content {
+    text-align: center;
+}
+
+.delete-confirm-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.delete-confirm-content ul {
+    text-align: left;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid var(--btn-danger);
+    border: 1px solid var(--border-color);
+}
+
+.delete-confirm-content li {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.modal-actions button {
+    min-width: 120px;
+}
+
+/* Deadline section styles */
+.deadline-display {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.deadline-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--btn-primary);
+    border: 1px solid var(--border-color);
+}
+
+.deadline-date {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.deadline-status {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+.deadline-status.expired {
+    color: var(--btn-danger);
+}
+
+.deadline-status.active {
+    color: var(--btn-success);
+}
+
+.expired-text {
+    color: var(--btn-danger);
+}
+
+.remaining-text {
+    color: var(--btn-success);
+}
+
+.no-deadline {
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-style: italic;
+    border: 1px solid var(--border-color);
+}
+
+.edit-deadline-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.deadline-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.deadline-editor label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.deadline-input {
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1em;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.deadline-input:focus {
+    outline: none;
+    border-color: var(--btn-primary);
+    box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.1);
+}
+
+.deadline-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.save-deadline-btn,
+.cancel-deadline-btn {
+    padding: 8px 16px;
+    font-size: 0.9em;
+    min-width: 100px;
 }

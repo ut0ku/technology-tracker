@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
+import DataImportExport from '../components/DataImportExport';
 import { useTechnologies } from '../contexts/TechnologyContext';
+import { useNotification } from '../contexts/NotificationContext';
 import './Settings.css';
 
 function Settings() {
     const { technologies, resetAllData } = useTechnologies();
+    const { showNotification } = useNotification();
     const [settings, setSettings] = useState({});
     const [showImportModal, setShowImportModal] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -20,21 +23,31 @@ function Settings() {
     }, []);
 
     const handleExportData = () => {
-        const data = {
-            exportedAt: new Date().toISOString(),
-            technologies: technologies,
-            settings: settings
-        };
-        const dataStr = JSON.stringify(data, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `tech-tracker-backup-${new Date().toISOString().split('T')[0]}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        try {
+            // Export full app backup with technologies and settings
+            const exportData = {
+                technologies: technologies,
+                settings: settings,
+                exportDate: new Date().toISOString(),
+                version: '1.0'
+            };
+
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `technology-tracker-backup_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showNotification('Резервная копия успешно экспортирована!', 'info');
+        } catch (error) {
+            alert('Ошибка экспорта данных');
+            console.error('Ошибка экспорта:', error);
+        }
     };
 
     const handleFileSelect = (file) => {
@@ -55,25 +68,49 @@ function Settings() {
         reader.onload = (e) => {
             try {
                 const parsedData = JSON.parse(e.target.result);
-                if (parsedData.technologies) {
-                    localStorage.setItem('technologies', JSON.stringify(parsedData.technologies));
 
-                    if (parsedData.settings) {
-                        localStorage.setItem('appSettings', JSON.stringify(parsedData.settings));
-                    }
+                // Handle both old format (array) and new format (object with technologies)
+                let technologiesToImport = [];
+                let settingsToImport = {};
 
-                    // Удаляем флаг сброса данных, чтобы данные загрузились
-                    localStorage.removeItem('dataReset');
-
-                    alert('✅ Данные успешно импортированы!');
-                    setShowImportModal(false);
-                    setSelectedFile(null);
-                    window.location.reload();
+                if (Array.isArray(parsedData)) {
+                    // Old format: just an array of technologies
+                    technologiesToImport = parsedData;
+                    console.log('Importing old format (technologies array)');
+                } else if (parsedData.technologies && Array.isArray(parsedData.technologies)) {
+                    // New format: full backup with technologies and settings
+                    technologiesToImport = parsedData.technologies;
+                    settingsToImport = parsedData.settings || {};
+                    console.log('Importing new format (full backup)');
                 } else {
-                    alert('❌ Некорректный формат данных');
+                    alert('❌ Некорректный формат данных. Ожидается массив технологий или объект с полем "technologies"');
+                    return;
                 }
+
+                // Validate that we have technologies to import
+                if (technologiesToImport.length === 0) {
+                    alert('❌ В файле нет технологий для импорта');
+                    return;
+                }
+
+                // Save to localStorage
+                localStorage.setItem('technologies', JSON.stringify(technologiesToImport));
+
+                if (Object.keys(settingsToImport).length > 0) {
+                    localStorage.setItem('appSettings', JSON.stringify(settingsToImport));
+                }
+
+                // Удаляем флаг сброса данных, чтобы данные загрузились
+                localStorage.removeItem('dataReset');
+
+                showNotification(`Данные успешно импортированы! (${technologiesToImport.length} технологий)`, 'success');
+                setShowImportModal(false);
+                setSelectedFile(null);
+                window.location.reload();
+
             } catch (error) {
-                alert('❌ Ошибка при импорте данных: ' + error.message);
+                showNotification('Ошибка при импорте данных: ' + error.message, 'error');
+                console.error('Import error:', error);
             }
         };
         reader.readAsText(selectedFile);
@@ -87,7 +124,7 @@ function Settings() {
         // Сбрасываем состояние в контексте
         resetAllData();
 
-        alert('✅ Все данные приложения сброшены!');
+        showNotification('Все данные приложения сброшены!', 'warning');
         setShowResetModal(false);
 
         // Перенаправляем на главную страницу
@@ -117,11 +154,16 @@ function Settings() {
                             🗑️ Сбросить все данные
                         </button>
                     </div>
+
+                    <div className="localStorage-section">
+                        <DataImportExport />
+                    </div>
                     <div className="data-info">
                         <p>Всего технологий в базе: <strong>{technologies.length}</strong></p>
                         <p>Изучено: <strong>{technologies.filter(t => t.status === 'completed').length}</strong></p>
                         <p>В процессе: <strong>{technologies.filter(t => t.status === 'in-progress').length}</strong></p>
                     </div>
+
                 </div>
 
             </div>

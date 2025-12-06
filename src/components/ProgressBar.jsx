@@ -1,15 +1,13 @@
 import './ProgressBar.css';
 
-// Универсальный компонент прогресс-бара
 function ProgressBar({
-    progress,           // Текущее значение прогресса (от 0 до 100)
-    label = '',         // Подпись к прогресс-бару
-    color = '#4CAF50',  // Цвет заполнения
-    height = 20,        // Высота прогресс-бара
-    showPercentage = true, // Показывать ли процент
-    animated = false    // Анимировать ли заполнение
+    progress,           
+    label = '',         
+    color = '#4CAF50',  
+    height = 20,        
+    showPercentage = true, 
+    animated = false    
 }) {
-    // Обеспечиваем, чтобы прогресс был в пределах 0-100
     const normalizedProgress = Math.min(100, Math.max(0, progress));
 
     return (

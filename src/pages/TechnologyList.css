@@ -1,8 +1,10 @@
 .technology-list-page {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border: 1px solid var(--border-color);
 }
 
 .technology-list-page.loading {
@@ -24,7 +26,7 @@
 }
 
 .technology-list-page.loading p {
-    color: #666;
+    color: var(--text-color);
     font-size: 1.1em;
     margin: 0;
 }
@@ -35,17 +37,17 @@
 }
 
 .technology-list-page.error h2 {
-    color: #e74c3c;
+    color: var(--btn-danger);
     margin-bottom: 15px;
 }
 
 .technology-list-page.error p {
-    color: #666;
+    color: var(--text-color);
     margin-bottom: 20px;
 }
 
 .technology-list-page.error button {
-    background: #e74c3c;
+    background: var(--btn-danger);
     color: white;
     border: none;
     padding: 12px 24px;
@@ -65,13 +67,13 @@
     align-items: center;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     gap: 20px;
 }
 
 .page-header h1 {
     margin: 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.8em;
     font-weight: 700;
     flex: 1;
@@ -87,27 +89,28 @@
 }
 
 .search-box {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 12px;
     margin: 20px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px var(--shadow-color);
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
 }
 
 .search-input {
     flex: 1;
     padding: 14px 20px;
     padding-left: 45px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     font-size: 1em;
     transition: all 0.3s ease;
-    background-color: #f8f9fa;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23667eea' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2390caf9' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: 15px center;
     background-size: 18px;
@@ -115,13 +118,13 @@
 
 .search-input:focus {
     outline: none;
-    border-color: #667eea;
-    background-color: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--btn-primary);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.1);
 }
 
 .search-results-count {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--btn-primary) 0%, var(--btn-info) 100%);
     color: white;
     font-weight: 600;
     padding: 10px 20px;
@@ -130,7 +133,7 @@
     white-space: nowrap;
     min-width: 130px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 3px 10px rgba(144, 202, 249, 0.3);
 }
 
 .technologies-grid {
@@ -149,20 +152,21 @@
 }
 
 .tech-card {
-    background: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    border-left: 6px solid #ccc;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-left: 6px solid var(--border-color);
     height: 100%;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--border-color);
 }
 
 .tech-card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 .tech-card.not-started {
@@ -186,7 +190,7 @@
 
 .tech-header h3 {
     margin: 0;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.3em;
     font-weight: 600;
     flex: 1;
@@ -201,26 +205,26 @@
     margin-left: 12px;
     white-space: nowrap;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .status-badge.not-started {
-    background-color: #ff6b6b;
+    background-color: var(--btn-danger);
     color: white;
 }
 
 .status-badge.in-progress {
-    background-color: #4ecdc4;
+    background-color: var(--btn-info);
     color: white;
 }
 
 .status-badge.completed {
-    background-color: #45b7d1;
+    background-color: var(--btn-success);
     color: white;
 }
 
 .tech-description {
-    color: #666;
+    color: var(--text-color);
     margin: 0 0 20px 0;
     line-height: 1.6;
     font-size: 0.95em;
@@ -239,9 +243,9 @@
 }
 
 .btn-change-status {
-    background: #f8f9fa;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
     padding: 8px 16px;
     border-radius: 6px;
     font-size: 0.9em;
@@ -251,24 +255,24 @@
 }
 
 .btn-change-status:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
+    background: var(--border-color);
+    border-color: var(--text-color);
 }
 
 .btn-link {
-    color: #667eea;
+    color: var(--btn-primary);
     text-decoration: none;
     font-weight: 500;
     padding: 8px 16px;
     border-radius: 6px;
-    border: 1px solid #667eea;
+    border: 1px solid var(--btn-primary);
     font-size: 0.9em;
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .btn-link:hover {
-    background-color: #667eea;
+    background-color: var(--btn-primary);
     color: white;
     text-decoration: none;
 }
@@ -276,15 +280,16 @@
 .empty-state {
     text-align: center;
     padding: 50px 30px;
-    background: #f8f9fa;
+    background: var(--card-bg);
     border-radius: 12px;
     margin: 30px 0;
-    border: 2px dashed #dee2e6;
+    border: 2px dashed var(--border-color);
     grid-column: 1 / -1;
+    color: var(--text-color);
 }
 
 .empty-state p {
-    color: #666;
+    color: var(--text-color);
     margin-bottom: 25px;
     font-size: 1.2em;
 }
@@ -377,22 +382,22 @@
 
 /* Стили для импорта дорожных карт */
 .roadmap-importer {
-    background: white;
-    border: 2px solid #e9ecef;
-    color: #333;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px var(--shadow-color);
     margin-bottom: 25px;
     position: relative;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid var(--btn-primary);
 }
 
 .roadmap-importer h3 {
     margin: 0 0 10px 0;
     font-size: 1.4em;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -400,22 +405,22 @@
 
 .roadmap-importer h3 .icon {
     font-size: 1.2em;
-    color: #667eea;
+    color: var(--btn-primary);
 }
 
 .roadmap-importer p {
     margin: 0 0 20px 0;
     font-size: 1em;
-    color: #666;
+    color: var(--text-color);
     line-height: 1.5;
 }
 
 .roadmap-importer p .highlight {
-    background: #f8f9fa;
+    background: var(--border-color);
     padding: 2px 6px;
     border-radius: 6px;
     font-weight: 600;
-    color: #495057;
+    color: var(--text-color);
 }
 
 .import-controls {
@@ -426,7 +431,7 @@
 }
 
 .import-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--btn-primary) 0%, var(--btn-info) 100%);
     border: none;
     color: white;
     padding: 14px 28px;
@@ -438,7 +443,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(144, 202, 249, 0.3);
     position: relative;
     overflow: hidden;
     min-width: 280px;
@@ -462,7 +467,7 @@
 
 .import-button:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(144, 202, 249, 0.4);
 }
 
 .import-button:hover:not(:disabled) .button-icon {
@@ -490,12 +495,12 @@
 
 .import-button:hover:not(:disabled) {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 15px 40px rgba(144, 202, 249, 0.4);
 }
 
 .import-button:active:not(:disabled) {
     transform: translateY(-1px) scale(1.02);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--btn-primary) 0%, var(--btn-info) 100%);
     color: white;
 }
 
@@ -503,7 +508,7 @@
     opacity: 0.7;
     cursor: not-allowed;
     transform: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-color);
 }
 
 .import-status {
@@ -511,11 +516,12 @@
     margin-top: 20px;
     position: relative;
     z-index: 2;
+    color: var(--text-color);
 }
 
 .import-status .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid white;
+    border-top: 4px solid var(--btn-primary);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -526,7 +532,7 @@
 .import-status p {
     margin: 0 0 8px 0;
     font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: var(--text-color);
 }
 
 .progress-hint {
@@ -534,6 +540,7 @@
     opacity: 0.8;
     font-style: italic;
     animation: pulse 2s ease-in-out infinite;
+    color: var(--text-color);
 }
 
 @keyframes float {
@@ -556,6 +563,50 @@
 @keyframes pulse {
     0%, 100% { opacity: 0.8; }
     50% { opacity: 1; }
+}
+
+/* Bulk actions styles */
+.bulk-actions {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.bulk-edit-btn {
+    background: linear-gradient(135deg, var(--btn-success) 0%, var(--btn-info) 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bulk-edit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.bulk-edit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .bulk-actions {
+        margin: 15px 0;
+    }
+
+    .bulk-edit-btn {
+        padding: 12px 24px;
+        font-size: 0.95em;
+    }
 }
 
 @media (max-width: 768px) {

@@ -9,6 +9,8 @@ import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import { TechnologyProvider } from './contexts/TechnologyContext';
+import { NotificationProvider } from './contexts/NotificationContext';
+import { ThemeProviderWrapper } from './contexts/ThemeContext';
 import './App.css';
 
 function App() {
@@ -34,58 +36,62 @@ function App() {
     };
 
     return (
-        <TechnologyProvider>
-            <Router>
-                <div className="App">
-                    <Navigation
-                        isLoggedIn={isLoggedIn}
-                        onLogout={handleLogout}
-                        username={username}
-                    />
+        <ThemeProviderWrapper>
+            <NotificationProvider>
+                <TechnologyProvider>
+                    <Router>
+                        <div className="App">
+                            <Navigation
+                                isLoggedIn={isLoggedIn}
+                                onLogout={handleLogout}
+                                username={username}
+                            />
 
-                    <div className="main-content">
-                        <Routes>
-                            <Route path="/" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <TechnologyList />
-                                </ProtectedRoute>
-                            } />
-                            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                            <div className="main-content">
+                                <Routes>
+                                    <Route path="/" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <TechnologyList />
+                                        </ProtectedRoute>
+                                    } />
+                                    <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
-                            <Route path="/technologies" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <TechnologyList />
-                                </ProtectedRoute>
-                            } />
+                                    <Route path="/technologies" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <TechnologyList />
+                                        </ProtectedRoute>
+                                    } />
 
-                            <Route path="/add-technology" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <AddTechnology />
-                                </ProtectedRoute>
-                            } />
+                                    <Route path="/add-technology" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <AddTechnology />
+                                        </ProtectedRoute>
+                                    } />
 
-                            <Route path="/technology/:techId" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <TechnologyDetail />
-                                </ProtectedRoute>
-                            } />
+                                    <Route path="/technology/:techId" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <TechnologyDetail />
+                                        </ProtectedRoute>
+                                    } />
 
-                            <Route path="/statistics" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <Statistics />
-                                </ProtectedRoute>
-                            } />
+                                    <Route path="/statistics" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <Statistics />
+                                        </ProtectedRoute>
+                                    } />
 
-                            <Route path="/settings" element={
-                                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                                    <Settings />
-                                </ProtectedRoute>
-                            } />
-                        </Routes>
-                    </div>
-                </div>
-            </Router>
-        </TechnologyProvider>
+                                    <Route path="/settings" element={
+                                        <ProtectedRoute isLoggedIn={isLoggedIn}>
+                                            <Settings />
+                                        </ProtectedRoute>
+                                    } />
+                                </Routes>
+                            </div>
+                        </div>
+                    </Router>
+                </TechnologyProvider>
+            </NotificationProvider>
+        </ThemeProviderWrapper>
     );
 }
 
